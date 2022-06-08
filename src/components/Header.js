@@ -66,7 +66,7 @@ export default function Header() {
                                 vertical: "top",
                                 horizontal: "left"
                             }}
-                            open={anchorElNav}
+                            open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
                                 display: { xs: "block", md: "none" }
@@ -97,7 +97,7 @@ export default function Header() {
                     >
                         <Link href={'/'}>AWESOME FOOD STORE</Link>
                     </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: 'center' }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
