@@ -2,28 +2,114 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
+import Router from 'next/router';
 
 const pages = ['ABOUT', 'STORE'];
 
 export default function Header() {
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
     return (
-        <div>
-            <p>[HEADER]</p>
-            <Link href={'/about'}>
-                <p>ABOUT</p>
-            </Link>
-            <Link href={'/store'}>
-                <p>STORE</p>
-            </Link>
-        </div>
+        <AppBar position="sticky" sx={{ backgroundColor: 'white' }}>
+            <Container maxWidth="xl">
+                <Toolbar disableGutters>
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: "monospace",
+                            fontWeight: 700,
+                            color: "black",
+                            textDecoration: "none"
+                        }}
+                    >
+                        <Link href={'/'}>AWESOME FOOD STORE</Link>
+                    </Typography>
+                    <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="default"
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "left"
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: "top",
+                                horizontal: "left"
+                            }}
+                            open={anchorElNav}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: { xs: "block", md: "none" }
+                            }}
+                        >
+                            {pages.map((page) => (
+                                <MenuItem key={page} onClick={() => {
+                                    Router.push(`/${page.toLowerCase()}`);
+                                    handleCloseNavMenu();
+                                }}>
+                                    <Typography textAlign="center">{page}</Typography>
+                                </MenuItem>
+                            ))}
+                        </Menu>
+                    </Box>
+                    <Typography
+                        variant="h5"
+                        noWrap
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'flex', md: 'none' },
+                            flexGrow: 1,
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            color: 'black',
+                            textDecoration: 'none',
+                        }}
+                    >
+                        <Link href={'/'}>AWESOME FOOD STORE</Link>
+                    </Typography>
+                    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: 'center' }}>
+                        {pages.map((page) => (
+                            <Button
+                                key={page}
+                                onClick={() => Router.push(`/${page.toLowerCase()}`)}
+                                sx={{ my: 2, marginX: 10, fontWeight: 700, color: "black", display: "block" }}
+                            >
+                                {page}
+                            </Button>
+                        ))}
+                    </Box>
+                </Toolbar>
+            </Container>
+        </AppBar>
     );
 }
