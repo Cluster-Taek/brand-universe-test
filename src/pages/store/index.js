@@ -1,5 +1,4 @@
 import { Container, Grid } from '@mui/material';
-import Error from 'next/error';
 import Head from 'next/head'
 import { useState } from 'react';
 import styles from '../../../styles/Home.module.css'
@@ -19,7 +18,7 @@ export default function Store() {
     const { store, isLoading, isError } = useStoreList();
 
     if (isLoading) return <div>loading...</div>
-    if (isError) return <Error />
+    if (isError) return (<div className={styles.container}><p>서버에서 오류가 발생하였습니다. 잠시 후 다시 시도해주세요.</p></div>)
 
     return (
         <div className={styles.container}>

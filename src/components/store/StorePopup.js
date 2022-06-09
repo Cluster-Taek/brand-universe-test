@@ -1,9 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import Error from "next/error";
 import Image from "next/image";
 import Link from "next/link";
 import CloseIcon from '@mui/icons-material/Close';
-import WebAssetOutlinedIcon from '@mui/icons-material/WebAssetOutlined';
 import { useStoreDetail } from "../../lib/api";
 import styles from './StorePopup.module.css'
 
@@ -11,7 +9,7 @@ export default function StorePopup({ id, setIsShow }) {
     const { store, isLoading, isError } = useStoreDetail(id);
 
     if (isLoading) return <div>loading...</div>
-    if (isError) return <Error />
+    if (isError) return (<div className={styles.container}><p>서버에서 오류가 발생하였습니다. 잠시 후 다시 시도해주세요.</p></div>)
 
     return (
         <div className={styles.wrap} onClick={(e) => e.target === e.currentTarget ? setIsShow(false) : null}>

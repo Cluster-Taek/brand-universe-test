@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import styles from '../../styles/Home.module.css'
-import Error from "next/error";
 
 export default function Custom404() {
     const router = useRouter();
