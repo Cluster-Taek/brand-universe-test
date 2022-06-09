@@ -13,12 +13,12 @@ export default function StorePopup({ id, setIsShow }) {
 
     return (
         <div className={styles.wrap} onClick={(e) => e.target === e.currentTarget ? setIsShow(false) : null}>
-            <Box className={styles.container} sx={{ flexDirection: 'row', flexGrow: 1, minWidth: '25rem', maxWidth: '50%', display: { xs: "none", md: "flex" } }} >
+            <Box className={styles.container} sx={{ flexDirection: 'row', flexGrow: 1, minWidth: '25rem', maxWidth: { md: '70%', lg: '50%' }, display: { xs: "none", md: "flex" } }} >
                 <div className={styles.image}>
                     <Image src={store.image} alt={store.name} layout="fill" objectFit="fill" loading="lazy" />
                 </div>
                 <div className={styles.content}>
-                    <CloseIcon className={styles.close} sx={{ top: '1rem'}} onClick={() => setIsShow(false)} />
+                    <CloseIcon className={styles.close} sx={{ top: '1rem' }} onClick={() => setIsShow(false)} />
                     <Typography
                         variant="h3"
                         noWrap
@@ -41,7 +41,7 @@ export default function StorePopup({ id, setIsShow }) {
                 </div>
             </Box>
             <Box className={styles.container} sx={{ position: 'relative', height: '100%', flexDirection: 'column', flexGrow: 1, minWidth: '25rem', maxWidth: '100%', display: { xs: "flex", md: "none" } }} >
-                <CloseIcon className={styles.close} sx={{ top: '5rem'}} onClick={() => setIsShow(false)} />
+                <CloseIcon className={styles.close} sx={{ top: '5rem' }} onClick={() => setIsShow(false)} />
                 <div className={styles.image}>
                     <Image src={store.image} alt={store.name} layout="fill" objectFit="fill" loading="lazy" />
                 </div>
