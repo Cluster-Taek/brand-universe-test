@@ -14,13 +14,10 @@
 
 .container {
     margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 0.5rem;
     overflow: hidden;
     width: 100%;
-    max-width: 50%;
     box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, 0.3);
     z-index: 100;
 }
@@ -43,8 +40,17 @@
 .close {
     position: absolute;
     right: 1rem;
-    top: 1rem;
     cursor: pointer;
+    z-index: 101;
+    background-color: white;
+    border-radius: 0.3rem;
+    font-size: 2.5rem;
+    padding: 0.5rem;
+}
+
+.close:hover {
+    color: white;
+    background-color: black;
 }
 
 .link {

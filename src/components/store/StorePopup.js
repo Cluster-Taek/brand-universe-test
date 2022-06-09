@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Error from "next/error";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,18 +15,18 @@ export default function StorePopup({ id, setIsShow }) {
 
     return (
         <div className={styles.wrap} onClick={(e) => e.target === e.currentTarget ? setIsShow(false) : null}>
-            <div className={styles.container}>
+            <Box className={styles.container} sx={{ flexDirection: 'row', flexGrow: 1, minWidth: '25rem', maxWidth: '50%', display: { xs: "none", md: "flex" } }} >
                 <div className={styles.image}>
-                    <Image src={store.image} alt={store.name} layout="fill" objectFit="fill" loading="lazy"/>
+                    <Image src={store.image} alt={store.name} layout="fill" objectFit="fill" loading="lazy" />
                 </div>
                 <div className={styles.content}>
-                    <CloseIcon className={styles.close} onClick={() => setIsShow(false)} />
+                    <CloseIcon className={styles.close} sx={{ top: '1rem'}} onClick={() => setIsShow(false)} />
                     <Typography
                         variant="h3"
                         noWrap
                         sx={{
                             mr: 2,
-                            display: 'flex',
+                            display: "flex",
                             fontFamily: "monospace",
                             fontWeight: 700,
                             color: "black",
@@ -41,7 +41,34 @@ export default function StorePopup({ id, setIsShow }) {
                     <p>{store.description}</p>
                     {store.url ? <Link href={store.url}><a className={styles.link}>{`${store.name} 방문하기`}</a></Link> : null}
                 </div>
-            </div>
+            </Box>
+            <Box className={styles.container} sx={{ position: 'relative', height: '100%', flexDirection: 'column', flexGrow: 1, minWidth: '25rem', maxWidth: '100%', display: { xs: "flex", md: "none" } }} >
+                <CloseIcon className={styles.close} sx={{ top: '5rem'}} onClick={() => setIsShow(false)} />
+                <div className={styles.image}>
+                    <Image src={store.image} alt={store.name} layout="fill" objectFit="fill" loading="lazy" />
+                </div>
+                <div className={styles.content}>
+                    <Typography
+                        variant="h5"
+                        noWrap
+                        sx={{
+                            mr: 2,
+                            display: "flex",
+                            fontFamily: "monospace",
+                            fontWeight: 700,
+                            color: "black",
+                            textDecoration: "none",
+                            cursor: "default",
+                            mt: 1,
+                            mb: 5
+                        }}
+                    >
+                        {store.name}
+                    </Typography>
+                    <p>{store.description}</p>
+                    {store.url ? <Link href={store.url}><a className={styles.link}>{`${store.name} 방문하기`}</a></Link> : null}
+                </div>
+            </Box>
         </div>
 
     )
